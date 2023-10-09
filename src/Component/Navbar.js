@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import globalObj from '../context/context'
 import { useNavigate } from 'react-router-dom';
-
+import { RiVideoAddLine } from "react-icons/ri";
+import { FaSistrix, FaMicrophone, FaRegBell } from "react-icons/fa6";
 const Navbar = () => {
   let { searchStr, setSearchStr } = useContext(globalObj);
 
@@ -26,23 +27,24 @@ const Navbar = () => {
         <p>IN</p>
       </div>
 
+
+
+
       <div id="navbar-mid">
         <input type="text" placeholder="Search" id="search" value={searchStr}
           onChange={(e) => setSearchStr(e.target.value)} onKeyPress={handle_onkeypress} />
         <button id="find" onClick={() => { if (searchStr.trim()) navigate('/search') }}>
-          <i className="fa-sharp fa-solid fa-magnifying-glass"></i>
-          {/* search icon */}
+          <FaSistrix style={{ fontSize: "20px" }} />
         </button>
-        <span id="mic"><i className="fa-solid fa-microphone"></i></span>
+        <span id="mic"><FaMicrophone style={{ fontSize: "20px" }} /></span>
       </div>
 
 
       <div id="navbar-right">
         <span>
-          <img src="https://tse2.mm.bing.net/th?id=OIP.taACaGo1_28G9E-UqijqSgHaEo&pid=Api&P=0"
-            alt="" />
+          <RiVideoAddLine style={{ fontSize: "20px" }} />
         </span>
-        <span><i className="fa-regular fa-bell"></i></span>
+        <span><FaRegBell style={{ fontSize: "20px" }} /></span>
         <span>
           <h4 id="alpha">S</h4>
         </span>

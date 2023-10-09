@@ -17,13 +17,17 @@ const Search = () => {
         searchStr, format_time, format_view, setMoreVd } = useContext(globalObj);
 
 
-
-
+    let navigate = useNavigate();
     useEffect(() => {
 
         //load video base on perticular search/query                                     
-        handle_async_code()
-    }, [])
+        if (searchStr) {
+            handle_async_code()
+
+        } else {
+            navigate("/")
+        }
+    }, [searchStr])
 
 
     function handleSearch() {
@@ -144,7 +148,7 @@ const Search = () => {
         }
     }
 
-    let navigate = useNavigate();
+
 
 
     //onclick of the perticular video

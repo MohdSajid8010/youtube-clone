@@ -47,34 +47,34 @@ const ChipContainer = () => {
 
     let navigate = useNavigate()
     return (
-        
-            <div className='chips-container'>
-                <button onClick={() => {
-                    setIndex(index - 1)
-                    console.log(index)
-                }} disabled={index <= 0} className='left-btn'><FaChevronLeft className='left-icon' /></button>
-                {
-                    categories &&
-                    (
-                        categories.map((obj) => {
-                            return (
-                                <div >
-                                    <span onClick={() => { setCategoryId(obj.id); navigate(`/category/:${obj.id}`) }} key={obj.id}
-                                        className='chip' style={{ transform: `translateX(-${index}00%)` }}>{obj.snippet.title}
-                                    </span>
-                                </div>
-                            )
-                        })
-                    )
-                }
-                <button onClick={() => {
-                    setIndex(index + 1)
-                    console.log(index)
-                }} disabled={index === 24} className='right-btn'><FaChevronRight className='right-icon' /></button>
-            </div>
+
+        <div className='chips-container'>
+            <button onClick={() => {
+                setIndex(index - 1)
+                console.log(index)
+            }} disabled={index <= 0} className='left-btn'><FaChevronLeft className='left-icon' /></button>
+            {
+                categories &&
+                (
+                    categories.map((obj) => {
+                        return (
+                            <div >
+                                <span onClick={() => { setCategoryId(obj.id); navigate(`/category/${obj.id}`) }} key={obj.id}
+                                    className='chip' style={{ transform: `translateX(-${index}00%)` }}>{obj.snippet.title}
+                                </span>
+                            </div>
+                        )
+                    })
+                )
+            }
+            <button onClick={() => {
+                setIndex(index + 1)
+                console.log(index)
+            }} disabled={index === 24} className='right-btn'><FaChevronRight className='right-icon' /></button>
+        </div>
 
 
-        
+
     )
 }
 

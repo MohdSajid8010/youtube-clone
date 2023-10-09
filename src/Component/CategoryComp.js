@@ -2,13 +2,18 @@ import React, { useContext, useEffect } from 'react'
 import globalObj from "../context/context";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { parseISO8601Duration } from "../App"
+import { parseISO8601Duration } from '../functionCommon/func';
 const api_key = process.env.REACT_APP_YT_API_KEY//yt api key
+
+
+//load video based on particulat category ID
 const CategoryComp = () => {
+
 
     let { setSearchResult, setVideoPlayObj, loadVideoBOid, setLoadVideoBOid, setTrendingVd, categoryId, format_time, format_view, setMoreVd } = useContext(globalObj);
 
     function loadVideoBOid_helper_func(category_id) {
+        console.log("category_id", category_id)
         return new Promise((resolve, reject) => {
             axios.get("https://www.googleapis.com/youtube/v3/search", {
                 params: {
@@ -81,7 +86,7 @@ const CategoryComp = () => {
             //     setTrendingVd("")
 
             // } else {
-            let arr = await loadVideoBOid_helper_func(category_id)
+            let arr = await loadVideoBOid_helper_func(category_id)//load video based on category id
             console.log("line 108", arr)
             arr = await add_channe_logo(arr)//add channel logo
             console.log("line 110", arr)
@@ -90,8 +95,8 @@ const CategoryComp = () => {
 
             sessionStorage.setItem(`category_id${category_id}`, JSON.stringify(arr));
             setLoadVideoBOid(arr);
-            setSearchResult("")
-            setTrendingVd("")
+            setSearchResult("");
+            setTrendingVd("");
             // }
         } catch (error) {
             console.log(error, error.message)
@@ -103,8 +108,8 @@ const CategoryComp = () => {
         if (arr.length > 0) {
             console.log("from session storege", categoryId, arr)
             setLoadVideoBOid(arr);
-            setSearchResult("")
-            setTrendingVd("")
+            // setSearchResult("");
+            // setTrendingVd("");
 
         } else {
 
@@ -114,6 +119,12 @@ const CategoryComp = () => {
 
     let navigate = useNavigate();
 
+    //when user click on any particular video
+    function handleVideoClick(obj) {
+        setVideoPlayObj(obj);
+        setMoreVd(loadVideoBOid.filter((obj2) => obj2.id.videoId !== obj.id.videoId));
+        navigate(`/${obj.id.videoId}`)
+    }
     return (
         <div>{
             loadVideoBOid && (
@@ -122,7 +133,7 @@ const CategoryComp = () => {
                         loadVideoBOid && (
                             loadVideoBOid.map((obj, i) => {
 
-                                return <div id="mainT" onClick={() => { setVideoPlayObj(obj); setMoreVd(loadVideoBOid.filter((obj2) => obj2.id.videoId !== obj.id.videoId)); navigate(`/${obj.id.videoId}`) }} key={i}>
+                                return <div id="mainT" onClick={() => handleVideoClick(obj)} key={i}>
                                     <div>
                                         <img src={obj.snippet.thumbnails.high.url} alt={obj.snippet.description} className='thumbnailmainT' />
                                     </div>

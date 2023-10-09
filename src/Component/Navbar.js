@@ -4,12 +4,13 @@ import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   let { searchStr, setSearchStr } = useContext(globalObj);
+
   let navigate = useNavigate();
   function handle_onkeypress(e) {
+    console.log(e.key, e.key.length)
     if (e.key === "Enter") {
       console.log("pressed")
-      // handle_async_code() navigate
-      if (searchStr)
+      if (searchStr.trim())
         navigate("/search")
     }
   }
@@ -26,19 +27,21 @@ const Navbar = () => {
       </div>
 
       <div id="navbar-mid">
-        <input type="text" placeholder="Search" id="search" value={searchStr} onChange={(e) => setSearchStr(e.target.value)} onKeyPress={handle_onkeypress} />
-        <button id="find" onClick={() => { if (searchStr) navigate('/search') }}>
+        <input type="text" placeholder="Search" id="search" value={searchStr}
+          onChange={(e) => setSearchStr(e.target.value)} onKeyPress={handle_onkeypress} />
+        <button id="find" onClick={() => { if (searchStr.trim()) navigate('/search') }}>
           <i className="fa-sharp fa-solid fa-magnifying-glass"></i>
+          {/* search icon */}
         </button>
         <span id="mic"><i className="fa-solid fa-microphone"></i></span>
       </div>
 
+
       <div id="navbar-right">
-        <span
-        ><img
-            src="https://tse2.mm.bing.net/th?id=OIP.taACaGo1_28G9E-UqijqSgHaEo&pid=Api&P=0"
-            alt=""
-          /></span>
+        <span>
+          <img src="https://tse2.mm.bing.net/th?id=OIP.taACaGo1_28G9E-UqijqSgHaEo&pid=Api&P=0"
+            alt="" />
+        </span>
         <span><i className="fa-regular fa-bell"></i></span>
         <span>
           <h4 id="alpha">S</h4>
@@ -50,4 +53,3 @@ const Navbar = () => {
 
 export default Navbar
 // value={searchStr} 
-{/* <button id="find" onClick={handle_async_code}> */ }

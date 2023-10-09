@@ -3,13 +3,29 @@ import globalObj from '../context/context';
 import { useNavigate } from 'react-router-dom';
 import { FaRegHeart } from "react-icons/fa";
 import { PiShareFatLight, PiThumbsUpLight, PiThumbsDownLight } from "react-icons/pi";
-import { parseISO8601Duration, format_like } from "../App"
+import { format_like, parseISO8601Duration } from '../functionCommon/func'
 
 const Videoplay = () => {
+
     const [showMore, setShowMore] = useState(false)
-    let {  VideoPlayObj, setVideoPlayObj, format_time, format_view, moreVd, setMoreVd } = useContext(globalObj)
+    let { VideoPlayObj, setVideoPlayObj, format_time, format_view, moreVd, setMoreVd } = useContext(globalObj)
     let navigate = useNavigate();
     console.log(VideoPlayObj, moreVd)
+
+
+    //onclick of the perticular video
+    function handleVideoClick(obj) {
+        setVideoPlayObj(obj);
+        setMoreVd([...moreVd]);
+        // window.scrollTo({
+        //     top: 0,
+        //     behavior: 'smooth',
+        // });
+        navigate(`/${obj.id.videoId ? obj.id.videoId : obj.id}`)
+    }
+
+    // The scrollTo() method scrolls the document to specified coordinates.
+    // https://stackabuse.com/how-to-scroll-to-top-in-react-with-a-button-component/
 
     return (
 
@@ -18,22 +34,23 @@ const Videoplay = () => {
 
             {
                 VideoPlayObj && (
-                    <div className='vd-play-cont'>
+                    <div className='vd-play-cont' >
 
                         <div className='oneVd'>
-                            <div >
-                                <iframe src={`https://www.youtube.com/embed/${VideoPlayObj.id.videoId ? (VideoPlayObj.id.videoId) : (VideoPlayObj.id)}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                            <div className='ifram-container'>
+                                <iframe src={`https://www.youtube.com/embed/${VideoPlayObj.id.videoId ? (VideoPlayObj.id.videoId) : (VideoPlayObj.id)}`}
+                                    title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                             </div>
                             <h3>{VideoPlayObj.snippet.title}</h3>
 
                             <div className='like-cont'>
                                 <div className='left'>
-                                    <img src={VideoPlayObj.logoUrl} alt="logo Url" className='channelLogoImg' />
+                                    <img title='channel logo' src={VideoPlayObj.logoUrl} alt="logo Url" className='channelLogoImg' />
                                     <div>
                                         <strong>{VideoPlayObj.snippet.channelTitle}</strong>
                                         <div>6.87M subscribers</div>
                                     </div>
-                                    <button>Subcribe</button>
+                                    <button title='click to subcribe'>Subcribe</button>
                                 </div>
                                 <div className='right'>
                                     <div>
@@ -78,8 +95,8 @@ const Videoplay = () => {
                                 <div className='moreVd'>
                                     {
                                         moreVd.map((obj, i) => {
-                                            return <div className='moreVd-one' onClick={() => { setVideoPlayObj(obj); setMoreVd([...moreVd]); navigate(`/${obj.id.videoId ? obj.id.videoId : obj.id}`) }} key={i}>
-                                                <div style={{ position: "relative" }}>
+                                            return <div className='moreVd-one' onClick={() => handleVideoClick(obj)} key={i} >
+                                                <div style={{ position: "relative" }} className='image-container'>
                                                     <img src={obj.snippet.thumbnails.high.url} alt={obj.snippet.description} className='thumbnailmainT' />
                                                     <div id="durationS">
                                                         {parseISO8601Duration(obj.contentDetails.duration)}

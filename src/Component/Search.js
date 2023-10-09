@@ -1,30 +1,34 @@
-import React, { useState, useEffect, useContext } from "react";
+// const url1 = 'https://www.googleapis.com/youtube/v3/videos';//for video
+// const api_key = "AIzaSyDP8CgDIEIW91UWCdzXHb0Xgk3ljXAvODY"//yt api key
+import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import globalObj from "../context/context";
 import { useNavigate } from "react-router-dom";
-import { parseISO8601Duration } from "../App"
+import { parseISO8601Duration } from "../functionCommon/func";
 
-// const api_key = "AIzaSyDP8CgDIEIW91UWCdzXHb0Xgk3ljXAvODY"//yt api key
 const api_key = process.env.REACT_APP_YT_API_KEY//yt api key
 
-let url1 = "https://www.googleapis.com/youtube/v3/search";
-// const url1 = 'https://www.googleapis.com/youtube/v3/videos';//fro video
+let searchUrl = "https://www.googleapis.com/youtube/v3/search";
+
+
 const Search = () => {
 
-    let { searchResult, setSearchResult, VideoPlayObj, setVideoPlayObj, loadVideoBOid, setLoadVideoBOid, trendingVd, setTrendingVd, searchStr, setSearchStr, format_time, format_view, setMoreVd } = useContext(globalObj);
+    let { searchResult, setSearchResult, setVideoPlayObj, setLoadVideoBOid, setTrendingVd,
+        searchStr, format_time, format_view, setMoreVd } = useContext(globalObj);
 
 
 
 
     useEffect(() => {
 
+        //load video base on perticular search/query                                     
         handle_async_code()
     }, [])
 
 
     function handleSearch() {
         return new Promise((resolve, reject) => {
-            axios.get(url1, {
+            axios.get(searchUrl, {
                 params: {
                     key: api_key,
                     q: searchStr,
@@ -40,7 +44,7 @@ const Search = () => {
                 }
             }).then((response) => {
 
-                console.log("line 30", response.data.items)//obj.snippet, obj.snippet.thumbnails
+                console.log("line 30", response, response.data.items)//obj.snippet, obj.snippet.thumbnails
                 resolve(response.data.items)//arr
 
             }).catch((error) => { console.log(error); reject(error.message) })
@@ -99,7 +103,7 @@ const Search = () => {
                         arr[i].statistics = response.data.items[i].statistics
                         arr[i].contentDetails = response.data.items[i].contentDetails
 
-                   
+
                     }
                     resolve(arr)
                 }).catch((err) => { console.log(err); reject(err) })
@@ -110,7 +114,7 @@ const Search = () => {
         try {
             if (!searchStr) return;
 
-            let arr = JSON.parse(sessionStorage.getItem("ytube_arr")) || []
+            let arr = JSON.parse(sessionStorage.getItem("searchRes")) || []
             if (arr.length > 0) {
                 setSearchResult(arr);
                 // setSearchStr("")
@@ -126,7 +130,7 @@ const Search = () => {
                 console.log("line 90", arr)
                 await add_view_count(arr);
                 console.log("line 103", arr);
-                sessionStorage.setItem("ytube_arr", JSON.stringify(arr))
+                sessionStorage.setItem("searchRes", JSON.stringify(arr))
                 setSearchResult(arr);
                 // setSearchStr("")
                 setLoadVideoBOid('')
@@ -141,6 +145,15 @@ const Search = () => {
     }
 
     let navigate = useNavigate();
+
+
+    //onclick of the perticular video
+    function handleVideoClick(obj) {
+        setVideoPlayObj(obj);
+        setMoreVd(searchResult.filter((obj2) => obj2.id.videoId !== obj.id.videoId));
+        navigate(`/${obj.id.videoId}`)
+    }
+
     return (
 
 
@@ -154,7 +167,7 @@ const Search = () => {
                                 searchResult.map((obj, i) => {
 
 
-                                    return <div id="main" onClick={() => { setVideoPlayObj(obj); setMoreVd(searchResult.filter((obj2) => obj2.id.videoId !== obj.id.videoId)); navigate(`/${obj.id.videoId}`) }} key={i}>
+                                    return <div id="main" onClick={() => handleVideoClick(obj)} key={i}>
                                         <div style={{ position: "relative" }}>
                                             <img src={obj.snippet.thumbnails.high.url} alt={obj.snippet.description} className='thumbnailmain' />
                                             <div id="durationS">

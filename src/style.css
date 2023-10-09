@@ -173,7 +173,8 @@ body {
     display: flex;
     gap: 10px;
     border: 1px solid red;
-    margin-top: 10px;
+    margin-top: 24px;
+    /* align-items: center; */
 }
 
 
@@ -183,7 +184,7 @@ body {
     flex-flow: column wrap;
     gap: 5px;
     font-size: 15px;
-    color: #e2dddd;
+    color: #868686;
 }
 
 
@@ -246,19 +247,23 @@ body {
 .chips-container,
 .chips-container2 {
 
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    overflow-x: scroll;
-    gap: 20px;
-    border: 1px solid red;
-    padding: 0px 15px;
+
+    z-index: 100;
+    background-color: white;
+
     position: fixed;
     top: 62px;
     left: 0px;
     right: 0px;
-    background-color: white;
-    z-index: 100;
+    display: flex;
+    gap: 10px;
+    overflow: hidden;
+    /* width: 90vw; */
+    /* margin: auto; */
+    /* border: 1px solid red; */
+    padding: 0px 10px;
+    padding-bottom: 10px;
+
 }
 
 .chips-container2 {
@@ -275,20 +280,27 @@ body {
 }
 
 .chip {
-    background-color: rgb(227, 222, 222);
+    white-space: nowrap;
     border: 2px solid rgb(204, 203, 203);
-    border-radius: 8px;
+    border-radius: 5px;
+    background-color: rgb(227, 222, 222);
 
     color: black;
-    padding: 10px;
+    display: inline-block;
+    /* box-sizing: content-box; */
+    /* within the with padding will applied */
+    padding: 5px;
+    width: 160px !important;
+    font-size: 15px;
+    text-align: center;
     cursor: pointer;
-    white-space: nowrap;
     transition: 0.5s;
+    /* transform: translateX(-100%); */
+
+
 }
 
-.chip:hover {
-    scale: 1.05;
-}
+
 
 .right-icon {
     font-size: 15px !important;
@@ -435,9 +447,14 @@ body {
     font-weight: 600;
 }
 
-iframe {
+.ifram-container {
     width: 100%;
     height: 400px;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
 }
 
 .moreVd {
@@ -472,24 +489,33 @@ iframe {
         display: grid;
         grid-template-columns: 1fr;
     }
+
+    #trendVdo {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
 }
+
 
 
 @media (max-width:800px) {
 
 
 
-
-
-    #trendVdo {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-
-
     #content .thumbnailmain {
-        width: 40vw;
+        width: 46vw;
     }
+
+    #main h3 {
+        font-weight: 100;
+        font-size: 16px;
+    }
+    
+
+#main #right-side {
+    gap: 5px;
+}
+
 }
 
 #main #right-side2,
@@ -499,18 +525,46 @@ iframe {
 
 
 
-@media (max-width:550px) {
-
-
-    .chips-container2 {
-        display: flex;
-        /* flex */
+@media (max-width:560px) {
+    .ifram-container {
+        width: 100%;
+        height: 300px;
     }
 
-    .chips-container {
+    iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+
+    .oneVd h3 {
+        font-size: 18px;
+    }
+
+    .like-cont {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .like-cont .left {
+        justify-content: flex-start;
+    }
+
+    .like-cont .right {
+        justify-content: flex-end;
+    }
+
+
+
+
+
+
+    .chips-container .right-btn,
+    .chips-container .left-btn {
         display: none;
-        /* flex */
+
     }
+
 
 
     #trendVdo {
@@ -526,6 +580,7 @@ iframe {
 
     #content .thumbnailmain {
         width: 100%;
+        height: 160px;
     }
 
 
@@ -611,11 +666,18 @@ iframe {
 }
 
 @media (max-width:400px) {
-    #root {
-        width: 100vw;
+
+    .ifram-container {}
+
+    iframe {
+        width: 100%;
+        height: 100%;
     }
 
-
+    #trendVdo #mainT .thumbnailmainT {
+        height: 160px;
+        border-radius: 5px;
+    }
 
     #content #main {
         width: 100%;
@@ -654,16 +716,11 @@ iframe {
     }
 
     .chip {
-        border: 2px solid rgb(204, 203, 203);
-        border-radius: 5px;
-        padding: 5px;
+        font-size: 13px;
     }
 
-    .chips-container,
-    .chips-container2 {
-        overflow-x: scroll;
+    .chips-container {
         gap: 6px;
-        padding: 0px 15px;
     }
 
 

@@ -1,15 +1,16 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import globalObj from '../context/context';
 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { parseISO8601Duration } from "../App"
+import { parseISO8601Duration } from '../functionCommon/func';
 // const api_key = process.env.REACT_APP_YT_API_KEY//yt api key
 let api_key = process.env.REACT_APP_YT_API_KEY
 
 const TrendingVideo = () => {
 
-    let { setSearchResult, setVideoPlayObj, setLoadVideoBOid, trendingVd, setTrendingVd, format_time, format_view, setSearchStr, setMoreVd } = useContext(globalObj)
+    let { setSearchResult, setVideoPlayObj, setLoadVideoBOid, trendingVd, setTrendingVd,
+        format_time, format_view, setSearchStr, setMoreVd } = useContext(globalObj)
 
 
 
@@ -79,6 +80,12 @@ const TrendingVideo = () => {
     }, [])
     let navigate = useNavigate();
 
+     //when user click on any particular video
+    function handleVideoClick(obj) {
+        setVideoPlayObj(obj);
+        setMoreVd(trendingVd.filter((obj2) => obj2.id !== obj.id));
+        navigate(`/${obj.id}`)
+    }
     return (
         <>
 
@@ -90,7 +97,7 @@ const TrendingVideo = () => {
                                 trendingVd.map((obj, i) => {
 
 
-                                    return <div id="mainT" onClick={() => { setVideoPlayObj(obj); setMoreVd(trendingVd.filter((obj2) => obj2.id !== obj.id)); navigate(`/${obj.id}`) }} key={i}>
+                                    return <div id="mainT" onClick={() => handleVideoClick(obj)} key={i}>
                                         <div>
                                             <img src={obj.snippet.thumbnails.high.url} alt={obj.snippet.description} className='thumbnailmainT' />
                                         </div>

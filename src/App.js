@@ -15,7 +15,10 @@ import CategoryComp from "./Component/CategoryComp";
 import globalObj from "./context/context";
 import { format_time, format_view } from './functionCommon/func'
 import { Route, Routes } from "react-router-dom";
-
+import LoadingBar from "react-top-loading-bar";
+import ErrorComp from "./Component/ErrorComp";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -26,9 +29,8 @@ const App = () => {
     const [loadVideoBOid, setLoadVideoBOid] = useState("");
     const [trendingVd, setTrendingVd] = useState("");
     const [searchStr, setSearchStr] = useState("");
-    const [categoryId, setCategoryId] = useState("");
     const [moreVd, setMoreVd] = useState("");
-
+    const [progress, setProgress] = useState(0)
 
 
 
@@ -39,20 +41,27 @@ const App = () => {
             <globalObj.Provider value={{
                 searchResult, setSearchResult, VideoPlayObj, setVideoPlayObj, loadVideoBOid, setLoadVideoBOid,
                 trendingVd, setTrendingVd,
-                searchStr, setSearchStr, categoryId, setCategoryId, format_time, format_view, moreVd, setMoreVd
+                searchStr, setSearchStr, format_time, format_view, moreVd, setMoreVd, setProgress
             }}>
 
 
+                <ToastContainer />
+                <LoadingBar color='#f11946' height={3} progress={progress}
+                    onLoaderFinished={() => setProgress(0)}
+                />
                 <Navbar />
                 <ChipContainer />
+
                 <Routes>
                     <Route path="/" element={<TrendingVideo />} />
-                    <Route path={'/search'} element={<Search />} />
-                    <Route path={`/category/:${categoryId}`} element={<CategoryComp />} />
-                    {console.log(VideoPlayObj)}
-                    <Route path={VideoPlayObj ? `/:${VideoPlayObj.id.videoId ? (VideoPlayObj.id.videoId) : (VideoPlayObj.id)}` : '/'} element={<Videoplay />} />
-                </Routes>
+                    <Route path={'/search/:searchStr'} element={<Search />} />
+                    <Route path={`/category/:categoryId`} element={<CategoryComp />} />
 
+                    {/* <Route path={VideoPlayObj ? `/:${VideoPlayObj.id.videoId ? (VideoPlayObj.id.videoId) : (VideoPlayObj.id)}` : '/'} element={<Videoplay />} /> */}
+                    <Route path={'/videoPlay'} element={<Videoplay />} />
+                    <Route path={"*"} element={<ErrorComp />} />
+
+                </Routes>
 
             </globalObj.Provider>
 

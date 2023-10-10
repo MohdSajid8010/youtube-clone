@@ -2,7 +2,7 @@
 
 
 .vd-play-cont {
-    border: 1px solid darkblue;
+    /* border: 1px solid darkblue; */
     margin-top: 110px;
     display: grid;
     grid-template-columns: 1.5fr 1fr;
@@ -10,7 +10,7 @@
 }
 
 .oneVd {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     flex-flow: column wrap;
     gap: 15px;
@@ -22,14 +22,14 @@
 }
 
 .like-cont {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     justify-content: space-between;
     padding: 10px 5px;
 }
 
 .like-cont .left {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     justify-content: space-between;
     gap: 20px;
@@ -54,7 +54,7 @@
 }
 
 .like-cont .right {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     justify-content: space-between;
     gap: 20px;
@@ -86,7 +86,7 @@
 }
 
 .descriptio-cont {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     background-color: #e2dddd;
     padding: 10px;
     border-radius: 10px;
@@ -111,7 +111,7 @@ iframe {
 
 /* more Videos container */
 .moreVd {
-    border: 1px solid green;
+    /* border: 1px solid green; */
 }
 
 

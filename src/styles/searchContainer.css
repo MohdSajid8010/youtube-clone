@@ -67,9 +67,14 @@
     display: none;
 }
 
+@media (max-width:920px) {
+    #search-cont .thumbnailmain {
+        width: 44vw;
+    }
+
+}
+
 @media (max-width:800px) {
-
-
 
     #search-cont .thumbnailmain {
         width: 46vw;

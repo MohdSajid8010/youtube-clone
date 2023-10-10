@@ -7,13 +7,22 @@ const Navbar = () => {
   let { searchStr, setSearchStr } = useContext(globalObj);
 
   let navigate = useNavigate();
+
   function handle_onkeypress(e) {
-    console.log(e.key, e.key.length)
-    if (e.key === "Enter") {
-      console.log("pressed")
-      if (searchStr.trim())
-        navigate("/search")
+    // console.log(e.key, e.key.length)
+    // console.log("pressed", searchStr)
+    if (searchStr.trim() && e.key === "Enter") {
+      navigate(`search/${searchStr}`)
     }
+  }
+  function handle_onchange(e) {
+    setSearchStr(e.target.value)
+  }
+  function handle_onclick() {
+
+    if (searchStr.trim())
+      navigate(`search/${searchStr}`)
+
   }
   return (
     <div id="navbar">
@@ -32,8 +41,8 @@ const Navbar = () => {
 
       <div id="navbar-mid">
         <input type="search" placeholder="Search" id="search-input" value={searchStr}
-          onChange={(e) => setSearchStr(e.target.value)} onKeyPress={handle_onkeypress} />
-        <button id="find" onClick={() => { if (searchStr.trim()) navigate('/search') }}>
+          onChange={(e) => handle_onchange(e)} onKeyPress={handle_onkeypress} />
+        <button id="find" onClick={handle_onclick}>
           <FaSistrix style={{ fontSize: "20px" }} />
         </button>
         <span id="mic"><FaMicrophone style={{ fontSize: "20px" }} /></span>

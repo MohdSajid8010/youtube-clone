@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import globalObj from '../context/context';
 import { useNavigate } from 'react-router-dom';
 import { FaRegHeart } from "react-icons/fa";
@@ -8,31 +8,57 @@ import { format_like, parseISO8601Duration } from '../functionCommon/func'
 const Videoplay = () => {
 
     const [showMore, setShowMore] = useState(false)
-    let { VideoPlayObj, setVideoPlayObj, format_time, format_view, moreVd, setMoreVd } = useContext(globalObj)
-    let navigate = useNavigate();
-    console.log(VideoPlayObj, moreVd)
+    let { VideoPlayObj, setVideoPlayObj, format_time, format_view, moreVd, setMoreVd, setProgress } = useContext(globalObj)
+    // let navigate = useNavigate();
+    // console.log(VideoPlayObj, moreVd)
 
 
     //onclick of the perticular video
     function handleVideoClick(obj) {
-        setVideoPlayObj(obj);
+        setVideoPlayObj({ ...obj });
         setMoreVd([...moreVd]);
         // window.scrollTo({
         //     top: 0,
         //     behavior: 'smooth',
         // });
-        navigate(`/${obj.id.videoId ? obj.id.videoId : obj.id}`)
+        // navigate(`/${obj.id.videoId ? obj.id.videoId : obj.id}`)
+        // navigate(`/videoPlay`)
     }
 
     // The scrollTo() method scrolls the document to specified coordinates.
     // https://stackabuse.com/how-to-scroll-to-top-in-react-with-a-button-component/
 
-    return (
+    useEffect(() => {
 
+
+        if (VideoPlayObj && moreVd?.length) {
+            console.log("video set ")
+            setProgress(100)
+            sessionStorage.setItem("VideoPlayObj", JSON.stringify(VideoPlayObj));
+            sessionStorage.setItem("moreVd", JSON.stringify(moreVd));
+
+        } else {
+            // block scope
+            let VideoPlayObj = JSON.parse(sessionStorage.getItem("VideoPlayObj")) || null;
+            let moreVd = JSON.parse(sessionStorage.getItem("moreVd")) || [];
+            // console.log("(VideoPlayObj, moreVd", typeof VideoPlayObj, typeof moreVd)
+            if (VideoPlayObj && moreVd.length) {
+                setProgress(100)
+                setVideoPlayObj(VideoPlayObj)
+                setMoreVd(moreVd)
+            }
+        }
+
+
+
+    }, [])
+
+    return (
 
         <div>
 
             {
+
                 VideoPlayObj && (
                     <div className='vd-play-cont' >
 
@@ -45,7 +71,7 @@ const Videoplay = () => {
 
                             <div className='like-cont'>
                                 <div className='left'>
-                                    <img title='channel logo' src={VideoPlayObj.logoUrl} alt="logo Url" className='channelLogoImg' />
+                                    <img title='channel logo' src={VideoPlayObj.logoUrl ?? VideoPlayObj.snippet.thumbnails.high.url} alt="" className='channelLogoImg' />
                                     <div>
                                         <strong>{VideoPlayObj.snippet.channelTitle}</strong>
                                         <div>6.87M subscribers</div>
@@ -97,7 +123,7 @@ const Videoplay = () => {
                                         moreVd.map((obj, i) => {
                                             return <div className='moreVd-one' onClick={() => handleVideoClick(obj)} key={i} >
                                                 <div style={{ position: "relative" }} className='image-container'>
-                                                    <img src={obj.snippet.thumbnails.high.url} alt={obj.snippet.description} className='thumbnailmainT' />
+                                                    <img src={obj.snippet.thumbnails.high.url} alt={""} className='thumbnailmainT' />
                                                     <div id="durationS">
                                                         {parseISO8601Duration(obj.contentDetails.duration)}
                                                     </div>
@@ -108,7 +134,7 @@ const Videoplay = () => {
                                                     <span>{format_view(obj.statistics.viewCount)} {format_time(obj.snippet.publishedAt)}</span>
                                                 </div>
                                                 <div id="right-side2" >
-                                                    <img src={obj.logoUrl} alt="logo Url" className='channelLogoImg' />
+                                                    <img src={obj.logoUrl ?? obj.snippet.thumbnails.high.url} alt="" className='channelLogoImg' />
                                                     <div>
                                                         <h3>{obj.snippet.title}</h3>
 

@@ -10,4 +10,5 @@ body {
     width: 96vw;
     margin: auto;
     padding-bottom: 50px;
+    transition: all 0.3s;
 }

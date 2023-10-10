@@ -121,9 +121,7 @@ const Search = () => {
             let arr = JSON.parse(sessionStorage.getItem("searchRes")) || []
             if (arr.length > 0) {
                 setSearchResult(arr);
-                // setSearchStr("")
-                setLoadVideoBOid('')
-                setTrendingVd('')
+
                 console.log("form local storage", arr)
             } else {
                 if (!searchStr) return;
@@ -136,9 +134,7 @@ const Search = () => {
                 console.log("line 103", arr);
                 sessionStorage.setItem("searchRes", JSON.stringify(arr))
                 setSearchResult(arr);
-                // setSearchStr("")
-                setLoadVideoBOid('')
-                setTrendingVd('')
+
             }
 
 
@@ -164,8 +160,7 @@ const Search = () => {
 
         <>{
             searchResult && (
-                <div id='content'>
-                    <div id='filter-main'>
+                <div id='search-cont'>
                         {
                             searchResult && (
                                 searchResult.map((obj, i) => {
@@ -188,7 +183,7 @@ const Search = () => {
                                             </div>
 
                                             <div className="flex2">
-                                                <img src={obj.logoUrl} alt="logo Url" className='channelLogoImg' />
+                                                <img src={obj.logoUrl ?? obj.snippet.thumbnails.high.url} alt="logo Url" className='channelLogoImg' />
                                                 <span>{obj.snippet.channelTitle} </span>
                                             </div>
 
@@ -198,7 +193,7 @@ const Search = () => {
 
 
                                         <div id="right-side2">
-                                            <img src={obj.logoUrl} alt="logo Url" className='channelLogoImg' />
+                                            <img src={obj.logoUrl?? obj.snippet.thumbnails.high.url} alt="logo Url" className='channelLogoImg' />
                                             <div>
                                                 <h3>{obj.snippet.title.slice(0, 50)}</h3>
 
@@ -220,7 +215,6 @@ const Search = () => {
                                 })
                             )
                         }
-                    </div>
                 </div>
             )
         }</>

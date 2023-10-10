@@ -1,0 +1,107 @@
+/*css for trendindVideo and category page */
+
+#trendVdo {
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 120px;
+
+}
+
+
+
+
+/* thumbnailmain intrending video and category video*/
+#trendVdo #mainT .thumbnailmainT {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+}
+
+
+/* channelLogoImg of trending video and category video */
+.channelLogoImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+}
+
+/* video title */
+#trendVdo #mainT h3 {
+    font-size: 16px;
+}
+
+.channel-logo-cont {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+
+
+/* video view count and views */
+.flexDiv2 {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 5px;
+    font-size: 15px;
+    color: #868686;
+}
+
+
+/* video channel title */
+#flexDiv {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#duration {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    margin-top: -30px;
+}
+
+#duration #durP {
+    color: #f2f2f2;
+    font-size: 12px;
+    border-radius: 4px;
+    background-color: #070a12;
+    padding: 2px 4px;
+    height: 17px;
+}
+
+
+@media (max-width:1000px) {
+
+    #trendVdo {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width:560px) {
+    #trendVdo {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+
+@media (max-width:400px) {
+    #trendVdo #mainT .thumbnailmainT {
+        height: 200px;
+        border-radius: 5px;
+    }
+
+    .flexDiv2 {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 5px;
+        font-size: 13px;
+    }
+
+}

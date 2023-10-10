@@ -1,0 +1,248 @@
+/* vd-play-container */
+
+
+.vd-play-cont {
+    border: 1px solid darkblue;
+    margin-top: 110px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 20px;
+}
+
+.oneVd {
+    border: 1px solid red;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 15px;
+
+}
+
+.oneVd h3 {
+    font-size: 22px;
+}
+
+.like-cont {
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5px;
+}
+
+.like-cont .left {
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+}
+
+.like-cont .left button {
+    border: none;
+    outline: none;
+    color: white;
+    background-color: black;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+.like-cont .left button:hover {
+    background-color: rgb(39, 39, 39);
+
+}
+
+.like-cont .right {
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+}
+
+.like-cont .right button {
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #c9c9c9;
+    font-weight: 600;
+    cursor: pointer;
+    transition-duration: 0.5s;
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.like-cont .right button:hover {
+    background-color: #a2a2a2;
+}
+
+.like-cont .right svg {
+    font-size: 26px;
+}
+
+.descriptio-cont {
+    border: 1px solid green;
+    background-color: #e2dddd;
+    padding: 10px;
+    border-radius: 10px;
+
+}
+
+.descriptio-cont span {
+    cursor: pointer;
+    color: black;
+    font-weight: 600;
+}
+
+.ifram-container {
+    width: 100%;
+    height: 400px;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
+
+/* more Videos container */
+.moreVd {
+    border: 1px solid green;
+}
+
+
+
+.moreVd-one {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.moreVd-one .thumbnailmainT {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.moreVd-one .right {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 10px;
+}
+
+
+.moreVd-one #right-side2 {
+    display: none;
+}
+
+@media (max-width:1000px) {
+    .vd-play-cont {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+
+}
+
+
+
+
+@media (max-width:560px) {
+    .ifram-container {
+        width: 100%;
+        height: 300px;
+    }
+
+    iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+
+    .oneVd h3 {
+        font-size: 18px;
+    }
+
+    .like-cont {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .like-cont .left {
+        justify-content: flex-start;
+    }
+
+    .like-cont .right {
+        justify-content: flex-end;
+    }
+
+
+    .moreVd-one .right {
+        display: none;
+    }
+
+    .moreVd-one #right-side2 {
+        display: flex;
+        gap: 10px;
+    }
+
+
+    .moreVd-one #right-side2 h3 {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+
+    .moreVd-one #right-side2 .flex1 {
+        font-size: 14px;
+        gap: 7px;
+    }
+
+
+
+
+
+
+
+
+
+    .moreVd-one {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+
+    .moreVd-one .thumbnailmainT {
+        height: 200px;
+        width: 100%;
+        border-radius: 10px;
+    }
+}
+
+
+@media (max-width:400px) {
+
+
+    iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+    .like-cont .right svg {
+        font-size: 17px;
+    }
+
+    .like-cont .left button {
+        padding: 6px 12px;
+    }
+
+}

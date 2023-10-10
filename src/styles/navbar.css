@@ -1,0 +1,184 @@
+#navbar {
+    display: flex;
+    padding: 12px;
+    background-color: #fff;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(222, 215, 215);
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+
+#navbar-left {
+    display: flex;
+    gap: 20px;
+}
+
+#navbar-left p {
+    font-size: 10px;
+    margin-left: -16px;
+    margin-top: -6px;
+    color: gray;
+}
+
+#utubelogo img {
+    width: 100px;
+}
+
+#navbar-mid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+}
+
+#navbar-mid #search-input {
+    width: 20vw;
+    height: 40px;
+    border: none;
+    padding: 10px;
+    padding-left: 15px;
+    outline: 1px solid lightgray;
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+    transition: all 0.5s;
+
+}
+
+#navbar-mid #search-input:focus {
+    width: 22vw;
+    font-size: 16px;
+}
+
+#navbar-mid button {
+    outline: 1px solid lightgray;
+    border: none;
+    height: 40px;
+    width: 60px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+
+}
+
+#navbar-mid #mic {
+    background-color: #f9f4f4;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+
+}
+
+#navbar-right {
+    height: 40px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+#navbar-right .s-logo {
+    background-color: rgb(175, 11, 175);
+    border-radius: 50%;
+    width: 27px;
+    height: 27px;
+
+    margin-top: -6px;
+    color: rgb(225, 222, 222);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+@media (max-width:560px) {
+    #navbar-right span:nth-child(1) {
+        display: none;
+        color: red;
+    }
+
+
+    #navbar-mid #mic {
+        display: none;
+    }
+
+
+
+    #navbar-right {
+        gap: 10px;
+        margin-left: 0px;
+    }
+
+
+    #navbar-mid #search-input {
+        width: 35vw;
+    }
+
+    #navbar-mid #search-input:focus {
+        width: 37vw;
+
+    }
+
+    #utubelogo img {
+        width: 70px;
+    }
+
+}
+
+@media (max-width:400px) {
+
+    #navbar {
+        padding: 12px 5px;
+    }
+
+    #utubelogo img {
+        width: 60px;
+    }
+
+    #navbar-mid #search-input {
+        height: 30px;
+        padding: 5px;
+        padding-left: 10px;
+        border-top-left-radius: 18px;
+        border-bottom-left-radius: 18px;
+    }
+
+    #navbar-mid #search-input:focus {
+        width: 40vw;
+
+    }
+
+    #navbar-mid button {
+        height: 30px;
+        width: 40px;
+    }
+
+    #navbar-right {
+        margin-left: 2px;
+    }
+
+    #navbar-right .s-logo {
+        width: 24px;
+        height: 24px;
+        margin-top: -2px;
+    }
+
+}
+
+
+
+
+
+

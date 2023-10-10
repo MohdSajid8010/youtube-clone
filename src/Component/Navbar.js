@@ -31,7 +31,7 @@ const Navbar = () => {
 
 
       <div id="navbar-mid">
-        <input type="text" placeholder="Search" id="search" value={searchStr}
+        <input type="search" placeholder="Search" id="search-input" value={searchStr}
           onChange={(e) => setSearchStr(e.target.value)} onKeyPress={handle_onkeypress} />
         <button id="find" onClick={() => { if (searchStr.trim()) navigate('/search') }}>
           <FaSistrix style={{ fontSize: "20px" }} />
@@ -41,13 +41,10 @@ const Navbar = () => {
 
 
       <div id="navbar-right">
-        <span>
-          <RiVideoAddLine style={{ fontSize: "20px" }} />
+        <span> <RiVideoAddLine style={{ fontSize: "20px" }} />
         </span>
         <span><FaRegBell style={{ fontSize: "20px" }} /></span>
-        <span>
-          <h4 id="alpha">S</h4>
-        </span>
+        <span><h4 className="s-logo">S</h4> </span>
       </div>
     </div>
   )

@@ -56,8 +56,7 @@ const TrendingVideo = () => {
 
                 sessionStorage.setItem("trendingVdo", JSON.stringify(arr))
                 setTrendingVd(arr)
-                setSearchResult('')
-                setLoadVideoBOid("")
+              
 
             } catch (err) {
                 console.log(err)
@@ -68,9 +67,7 @@ const TrendingVideo = () => {
         if (arr.length > 0) {
             console.log("trending vd from sessions storage", arr)
             setTrendingVd(arr)
-            setSearchResult('')
-            setLoadVideoBOid("")
-            setSearchStr('')
+           
 
         } else {
             console.log("not from sessions storage")
@@ -80,7 +77,7 @@ const TrendingVideo = () => {
     }, [])
     let navigate = useNavigate();
 
-     //when user click on any particular video
+    //when user click on any particular video
     function handleVideoClick(obj) {
         setVideoPlayObj(obj);
         setMoreVd(trendingVd.filter((obj2) => obj2.id !== obj.id));
@@ -105,7 +102,7 @@ const TrendingVideo = () => {
                                             <p id="durP">{parseISO8601Duration(obj.contentDetails.duration)}</p>
                                         </div>
                                         <div className='channel-logo-cont'>
-                                            <img src={obj.logoUrl} alt="logo Url" className='channelLogoImg' />
+                                            <img src={obj.logoUrl ?? "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Solid_white_bordered.svg/600px-Solid_white_bordered.svg.png"} alt="logo Url" className='channelLogoImg' />
                                             <div>
                                                 <h3>{obj.snippet.title}</h3>
 

@@ -9,8 +9,7 @@ const api_key = process.env.REACT_APP_YT_API_KEY//yt api key
 //load video based on particulat category ID
 const CategoryComp = () => {
 
-
-    let { setSearchResult, setVideoPlayObj, loadVideoBOid, setLoadVideoBOid, setTrendingVd, categoryId, format_time, format_view, setMoreVd } = useContext(globalObj);
+    let { setVideoPlayObj, loadVideoBOid, setLoadVideoBOid, categoryId, format_time, format_view, setMoreVd } = useContext(globalObj);
 
     function loadVideoBOid_helper_func(category_id) {
         console.log("category_id", category_id)
@@ -95,8 +94,6 @@ const CategoryComp = () => {
 
             sessionStorage.setItem(`category_id${category_id}`, JSON.stringify(arr));
             setLoadVideoBOid(arr);
-            setSearchResult("");
-            setTrendingVd("");
             // }
         } catch (error) {
             console.log(error, error.message)
@@ -108,8 +105,6 @@ const CategoryComp = () => {
         if (arr.length > 0) {
             console.log("from session storege", categoryId, arr)
             setLoadVideoBOid(arr);
-            // setSearchResult("");
-            // setTrendingVd("");
 
         } else {
 
@@ -141,7 +136,7 @@ const CategoryComp = () => {
                                         <p id="durP">{parseISO8601Duration(obj.contentDetails.duration)}</p>
                                     </div>
                                     <div className='channel-logo-cont'>
-                                        <img src={obj.logoUrl} alt="logo Url" className='channelLogoImg' />
+                                        <img src={obj.logoUrl ?? "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Solid_white_bordered.svg/600px-Solid_white_bordered.svg.png"} alt="logo Url" className='channelLogoImg' />
                                         <div>
                                             <h3>{obj.snippet.title}</h3>
 

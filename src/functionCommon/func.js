@@ -47,6 +47,7 @@ export const parseISO8601Duration = (duration) => {
             else if (unit === "S") timeString += value + "";//sec
         });
     }
+    // console.log(timeString)
     return timeString.trim();
 }
 

@@ -1,0 +1,125 @@
+.chips-container {
+
+    z-index: 100;
+    background-color: white;
+    position: fixed;
+    top: 62px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    gap: 10px;
+    /* overflow: hidden; */
+    overflow-x: scroll;
+    padding: 0px 10px;
+    padding-bottom: 10px;
+}
+
+
+
+
+
+.chips-container::-webkit-scrollbar {
+    display: none;
+}
+
+.chip {
+    white-space: nowrap;
+    border-radius: 5px;
+    background-color: rgb(227, 222, 222);
+
+    color: black;
+    display: inline-block;
+    /* box-sizing: content-box; */
+    /* within the with padding will applied */
+    padding: 10px 0px;
+    width: 160px;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.5s;
+    /* transform: translateX(-100%); */
+
+
+}
+
+
+
+.right-icon {
+    font-size: 15px !important;
+    color: #e2dddd;
+}
+
+.left-icon {
+    font-size: 15px !important;
+
+    color: #e2dddd;
+    font-weight: 900 !important;
+
+}
+
+.chips-container button {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.chips-container button:hover {
+
+    background-color: rgb(173, 169, 169);
+
+}
+
+.chips-container .right-btn {
+    position: absolute;
+    right: 10px;
+    z-index: 100;
+
+}
+
+.chips-container .left-btn {
+    position: absolute;
+    left: 10px;
+    z-index: 100;
+
+}
+
+
+
+@media (max-width:560px) {
+
+    .chips-container .right-btn,
+    .chips-container .left-btn {
+        display: none;
+
+    }
+
+    .chip {
+        border-radius: 5px;
+        padding: 8px 10px;
+        width: auto;
+        font-size: 13px;
+
+    }
+
+
+
+}
+
+
+@media (max-width:400px) {
+    .chip {
+        font-size: 13px;
+    }
+
+    .chips-container {
+        gap: 6px;
+    }
+}
+

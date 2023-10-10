@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import "./style.css"
+import "./styles/navbar.css"
+import "./styles/chipContainer.css"
+import "./styles/videoPlay.css"
+import "./styles/trendindVideo.css"
+import "./styles/searchContainer.css"
+import "./styles/style.css"
+
 import Navbar from "./Component/Navbar";
 import ChipContainer from "./Component/ChipContainer";
 import Search from "./Component/Search"
@@ -9,6 +15,9 @@ import CategoryComp from "./Component/CategoryComp";
 import globalObj from "./context/context";
 import { format_time, format_view } from './functionCommon/func'
 import { Route, Routes } from "react-router-dom";
+
+
+
 
 const App = () => {
 

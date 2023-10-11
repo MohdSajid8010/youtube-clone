@@ -2,7 +2,7 @@
 
 
 .vd-play-cont {
-    /* border: 1px solid darkblue; */
+    border: 1px solid darkblue;
     margin-top: 110px;
     display: grid;
     grid-template-columns: 1.5fr 1fr;
@@ -10,9 +10,10 @@
 }
 
 .oneVd {
-    /* border: 1px solid red; */
+    border: 1px solid red;
     display: flex;
-    flex-flow: column wrap;
+    /* flex-flow: column wrap; */
+    flex-direction: column;
     gap: 15px;
 
 }

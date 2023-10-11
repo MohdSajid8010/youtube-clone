@@ -55,7 +55,7 @@ const Videoplay = () => {
 
     return (
 
-        <div>
+        <>
 
             {
 
@@ -161,7 +161,7 @@ const Videoplay = () => {
                     </div>
                 )
             }
-        </div>
+        </>
     )
 }
 

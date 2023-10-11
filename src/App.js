@@ -24,11 +24,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 
+    const [trendingVd, setTrendingVd] = useState("");
+    const [loadVideoBOid, setLoadVideoBOid] = useState("");
+    const [searchStr, setSearchStr] = useState("");
     const [searchResult, setSearchResult] = useState("");
     const [VideoPlayObj, setVideoPlayObj] = useState("");
-    const [loadVideoBOid, setLoadVideoBOid] = useState("");
-    const [trendingVd, setTrendingVd] = useState("");
-    const [searchStr, setSearchStr] = useState("");
     const [moreVd, setMoreVd] = useState("");
     const [progress, setProgress] = useState(0)
 
@@ -39,16 +39,14 @@ const App = () => {
         <div>
 
             <globalObj.Provider value={{
-                searchResult, setSearchResult, VideoPlayObj, setVideoPlayObj, loadVideoBOid, setLoadVideoBOid,
-                trendingVd, setTrendingVd,
-                searchStr, setSearchStr, format_time, format_view, moreVd, setMoreVd, setProgress
+                trendingVd, setTrendingVd, loadVideoBOid, setLoadVideoBOid,
+                searchStr, setSearchStr, searchResult, setSearchResult, VideoPlayObj, setVideoPlayObj,
+                moreVd, setMoreVd, setProgress, format_time, format_view,
             }}>
 
 
                 <ToastContainer />
-                <LoadingBar color='#f11946' height={3} progress={progress}
-                    onLoaderFinished={() => setProgress(0)}
-                />
+                <LoadingBar color='#f11946' height={3} progress={progress} onLoaderFinished={() => setProgress(0)} />
                 <Navbar />
                 <ChipContainer />
 
@@ -56,11 +54,8 @@ const App = () => {
                     <Route path="/" element={<TrendingVideo />} />
                     <Route path={'/search/:searchStr'} element={<Search />} />
                     <Route path={`/category/:categoryId`} element={<CategoryComp />} />
-
-                    {/* <Route path={VideoPlayObj ? `/:${VideoPlayObj.id.videoId ? (VideoPlayObj.id.videoId) : (VideoPlayObj.id)}` : '/'} element={<Videoplay />} /> */}
                     <Route path={'/videoPlay'} element={<Videoplay />} />
                     <Route path={"*"} element={<ErrorComp />} />
-
                 </Routes>
 
             </globalObj.Provider>

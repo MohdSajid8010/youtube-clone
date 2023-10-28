@@ -45,7 +45,7 @@ const Videoplay = () => {
             if (VideoPlayObj && moreVd.length) {
                 setProgress(100)
                 setVideoPlayObj(VideoPlayObj)
-                setMoreVd(moreVd)
+                setMoreVd(moreVd.slice(0, 5))
             }
         }
 

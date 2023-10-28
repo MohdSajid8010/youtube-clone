@@ -24,8 +24,8 @@ const Search = () => {
 
         //load video base on perticular search/query                                     
         if (searchStr) {
-            // let arr = JSON.parse(sessionStorage.getItem(`searchRes${searchStr}`)) || [];
-            let arr = JSON.parse(sessionStorage.getItem(`searchRes`)) || [];
+            let arr = JSON.parse(sessionStorage.getItem(`searchRes${searchStr}`)) || [];
+            // let arr = JSON.parse(sessionStorage.getItem(`searchRes`)) || [];
 
             if (arr.length > 0) {
 
@@ -51,13 +51,13 @@ const Search = () => {
                     q: searchStr,
                     type: "video",
                     part: 'snippet',
-                    maxResults: 5,
+                    maxResults: 15,
                     // key: api_key,
                     // part: 'contentDetails,snippet,statistics',
                     // metrics: 'views',
                     // chart: 'mostPopular',
                     regionCode: 'IN',
-                    // maxResults: 5,
+                    // maxResults: 15,
                 }
             }).then((response) => {
 
@@ -139,8 +139,8 @@ const Search = () => {
             await add_view_count(arr);
             setProgress(100)
             // console.log("added view count", arr);
-            // sessionStorage.setItem(`searchRes${searchStr}`, JSON.stringify(arr))
-            sessionStorage.setItem(`searchRes`, JSON.stringify(arr))
+            sessionStorage.setItem(`searchRes${searchStr}`, JSON.stringify(arr))
+            // sessionStorage.setItem(`searchRes`, JSON.stringify(arr))
             setSearchResult(arr);
         } catch (error) {
             setProgress(100)

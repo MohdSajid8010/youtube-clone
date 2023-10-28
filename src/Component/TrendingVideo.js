@@ -48,7 +48,7 @@ const TrendingVideo = () => {
     }
     function gettrendingVdo() {
         return new Promise((resolve, reject) => {
-            axios.get(`https://www.googleapis.com/youtube/v3/videos?part=contentDetails,snippet,statistics&metrics=views&chart=mostPopular&regionCode=IN&maxResults=5&key=${api_key}`)
+            axios.get(`https://www.googleapis.com/youtube/v3/videos?part=contentDetails,snippet,statistics&metrics=views&chart=mostPopular&regionCode=IN&maxResults=15&key=${api_key}`)
                 .then((res) => {
                     if (res.status === 200) {
                         resolve(res.data.items);

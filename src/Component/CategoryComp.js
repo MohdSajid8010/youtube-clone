@@ -23,7 +23,7 @@ const CategoryComp = () => {
                     type: "video",
                     videoCategoryId: category_id,
                     key: api_key,
-                    maxResults: 5,
+                    maxResults: 15,
                 }
             }).then((response) => {
                 resolve(response.data.items);
